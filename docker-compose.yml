@@ -1,0 +1,30 @@
+---
+version: "3.7"
+
+services:
+  glmt-db:
+    image: mysql
+    container_name: glmt-db
+    restart: unless-stopped
+    env_file:
+      - dev.env
+    ports:
+      - 3306:3306
+    networks:
+      - glmt_network
+
+  go-lightweight-microservice-template:
+    image: glmt/go-lightweight-microservice-template:0.1
+    container_name: go-lightweight-microservice-template
+    env_file:
+      - dev.env
+    ports:
+      - 9010:9010
+    networks:
+      - glmt_network
+    depends_on:
+      - glmt-db
+
+networks:
+  glmt_network:
+    driver: bridge
