@@ -12,5 +12,5 @@ type BaseModel struct {
 }
 
 func (base *BaseModel) BeforeCreate(scope *gorm.Scope) error {
-	return scope.SetColumn("ID", uuid.NewV4())
+	return scope.SetColumn("id", uuid.NewV4())
 }

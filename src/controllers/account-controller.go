@@ -14,11 +14,19 @@ import (
 
 func GetAccount(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	ID := vars["id"]
+	id := vars["id"]
 	// look up account by uuid
-	account := models.FindAccountById(ID)
+	account := models.FindAccountById(id)
 
 	res, _ := json.Marshal(account)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(res)
+}
+
+func GetAccounts(w http.ResponseWriter, r *http.Request) {
+	accounts := models.GetAllAccounts()
+	res, _ := json.Marshal(accounts)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
@@ -64,4 +72,12 @@ func DeleteAccount(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Account does not exist", 400)
 		return
 	}
+
+	// parse account to JSON
+	res, _ := json.Marshal(account)
+
+	// delete account and write deleted account
+	models.DeleteAccountById(account.ID)
+	w.WriteHeader(http.StatusOK)
+	w.Write(res)
 }

@@ -11,7 +11,7 @@ RUN \
 EXPOSE 9010
 
 # layer in executable
-COPY ./cmd/main/main /glmt
+COPY ./bin/main /glmt
 
 # optional: copy sources and build directly into the container
 #COPY src src

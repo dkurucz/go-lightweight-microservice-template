@@ -24,9 +24,9 @@ func (session *Session) CreateSession() *Session {
 	return session
 }
 
-func FindSessionById(ID string) *Session {
+func FindSessionById(id string) *Session {
 	var session Session
-	sessionDb.Where("ID=?", ID).Find(&session)
+	sessionDb.Where("id=?", id).Find(&session)
 	return &session
 }
 

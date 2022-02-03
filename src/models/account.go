@@ -3,6 +3,7 @@ package models
 import (
 	"github.com/dkurucz/go-lightweight-microservice-template/src/config"
 	"github.com/jinzhu/gorm"
+	"github.com/satori/go.uuid"
 	"time"
 )
 
@@ -22,10 +23,16 @@ func (acc *Account) CreateAccount() *Account {
 	return acc
 }
 
-func FindAccountById(ID string) *Account {
+func GetAllAccounts() []Account {
+	var Accounts []Account
+	accountDb.Find(&Accounts)
+	return Accounts
+}
+
+func FindAccountById(id string) *Account {
 	var account Account
 	accountDb = config.GetDB()
-	accountDb.Where("ID=?", ID).Find(&account)
+	accountDb.Where("id=?", id).Find(&account)
 	return &account
 }
 
@@ -36,10 +43,10 @@ func FindAccountByAccountName(AccountName string) *Account {
 	return &account
 }
 
-func DeleteAccountById(ID string) *Account {
+func DeleteAccountById(id uuid.UUID) *Account {
 	var account Account
 	accountDb = config.GetDB()
-	accountDb.Where("ID=?", ID).Find(&account)
+	accountDb.Where("id=?", id.String()).Find(&account)
 	accountDb.Unscoped().Delete(&account)
 	return &account
 }

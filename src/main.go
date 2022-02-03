@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"github.com/jinzhu/gorm"
 	"github.com/dkurucz/go-lightweight-microservice-template/src/config"
 	"github.com/dkurucz/go-lightweight-microservice-template/src/models"
 	"github.com/dkurucz/go-lightweight-microservice-template/src/routes"
+	"github.com/gorilla/mux"
+	"github.com/jinzhu/gorm"
 
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"fmt"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
 	"net/http"
 )

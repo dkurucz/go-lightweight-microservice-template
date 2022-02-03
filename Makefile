@@ -8,7 +8,7 @@ PORT = 9010
 all: clean build
 
 build:
-	cd ./cmd/main && env GOOS=linux GOARCH=amd64 go build main.go
+	cd ./src && env GOOS=linux GOARCH=amd64 go build -o ../bin/main main.go
 	docker build -t $(NAME):$(VERSION) -f Dockerfile .
 
 clean:
