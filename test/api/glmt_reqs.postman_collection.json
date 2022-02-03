@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "ef9650cb-0084-491a-b51b-ea0294b85f23",
+		"name": "GLMT Reqs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_name\": \"Test\",\n    \"password\": \"TestPassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9010/api/account/login",
+					"host": [
+						"localhost"
+					],
+					"port": "9010",
+					"path": [
+						"api",
+						"account",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_name\": \"Test\",\n    \"password\": \"TestPassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9010/api/account/create",
+					"host": [
+						"localhost"
+					],
+					"port": "9010",
+					"path": [
+						"api",
+						"account",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9010/api/account/",
+					"host": [
+						"localhost"
+					],
+					"port": "9010",
+					"path": [
+						"api",
+						"account",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Account By Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_name\": \"Test\",\n    \"password\": \"TestPassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9010/api/account/{{account_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "9010",
+					"path": [
+						"api",
+						"account",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Account By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_name\": \"Test\",\n    \"password\": \"TestPassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9010/api/account/{{account_id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "9010",
+					"path": [
+						"api",
+						"account",
+						"{{account_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

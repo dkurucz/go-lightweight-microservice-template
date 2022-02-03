@@ -25,6 +25,7 @@ func (acc *Account) CreateAccount() *Account {
 
 func GetAllAccounts() []Account {
 	var Accounts []Account
+	accountDb = config.GetDB()
 	accountDb.Find(&Accounts)
 	return Accounts
 }

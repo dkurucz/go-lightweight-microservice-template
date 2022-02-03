@@ -15,8 +15,14 @@ import (
 func GetAccount(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
+
 	// look up account by uuid
 	account := models.FindAccountById(id)
+	nullUuid, _ := uuid.FromString(models.NULL_ACCT_ID)
+	if account.ID == nullUuid {
+		http.Error(w, "Account not found", 404)
+		return
+	}
 
 	res, _ := json.Marshal(account)
 	w.Header().Set("Content-Type", "application/json")
@@ -26,7 +32,12 @@ func GetAccount(w http.ResponseWriter, r *http.Request) {
 
 func GetAccounts(w http.ResponseWriter, r *http.Request) {
 	accounts := models.GetAllAccounts()
-	res, _ := json.Marshal(accounts)
+
+	res := []byte("[]")
+	if accounts != nil {
+		res, _ = json.Marshal(accounts)
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
@@ -62,11 +73,11 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 
 func DeleteAccount(w http.ResponseWriter, r *http.Request) {
 	// parse request
-	accountReqData := &models.Account{}
-	utils.ParseBody(r, accountReqData)
+	vars := mux.Vars(r)
+	id := vars["id"]
 
 	// first ensure the account doesn't already exist by the specified name
-	account := models.FindAccountByAccountName(accountReqData.AccountName)
+	account := models.FindAccountById(id)
 	nullUuid, _ := uuid.FromString(models.NULL_ACCT_ID)
 	if account.ID == nullUuid {
 		http.Error(w, "Account does not exist", 400)
